@@ -34,4 +34,13 @@
             include("app/view/".strtolower($view).".tpl.php");
         }
 
+        function renderizaPaginaInicial ($pdo, $posts, $categorias){
+            $param = array("titulo"     => $this->nome_cms,
+                           "pagina"     => "inicial",
+                           "inicial"    => array ("posts"=> $posts,
+                                                  "categorias" => $categorias));
+
+            $this->loadView("Site", $param);
+        }
+
     }

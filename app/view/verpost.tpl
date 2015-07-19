@@ -13,8 +13,8 @@
 
   <div class="blog-post">
 	<h2 class="blog-post-title"><?=$post["titulo"]?></h2>
-	<p class="blog-post-meta">00/00/0000 bye NAME</p>
-	<p>textx</p>
+	<p class="blog-post-meta">00/00/0000 por NOME</p>
+	<p>texto texto texto texto texto texto texto texto texto texto texto texto texto texto</p>
   </div><!-- /.blog-post -->
 	<?php } ?>
 	

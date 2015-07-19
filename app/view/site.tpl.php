@@ -17,7 +17,7 @@
    <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="#">Inicial</a>
+          <a class="blog-nav-item active" href="index.php">Inicial</a>
           <a class="blog-nav-item" href="#">Fale Conosco</a>
         </nav>
       </div>
@@ -26,7 +26,7 @@
 	<div class="container">
 		<div class="blog-header">
 			<h1 class="blog-title">Blog PHP</h1>
-			<p class="lead blog-description">Blog desenvolvimento em PHP</p>
+			<p class="lead blog-description">Blog desenvolvimento em PHP / Devmedia</p>
 		</div>
 	</div>
 	
