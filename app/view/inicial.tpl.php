@@ -7,7 +7,7 @@
 		$date = new DateTime($post["data_post"]);
 	?>
   <div class="blog-post">
-	<h2 class="blog-post-title"><?=$post["titulo_post"]?></h2>
+	<a href="index.php?m=post&id=<?=base64_encode($post["id_post"])?>"> <h2 class="blog-post-title"><?=$post["titulo_post"]?></h2> </a>
 	<p class="blog-post-meta"><?=$date->format('d/m/Y H:i:s')?> por <?=$post["nome_usuario"]?>. Categoria: <strong><?=$post["descricao_categoria"]?></strong></p>
       <img src="./upload/<?=$post["nome_imagem"]?>">
 	<p><?=$post["text_post"]?></p>

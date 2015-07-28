@@ -14,6 +14,15 @@
     $app = new Application();
 
     switch($modulo){
+        case "post": $site = $app->loadModel("Site");
+                     $obj   = $site->getPost($app->connection, (int)base64_decode($_GET['id']));
+                     $posts = $obj->fetchAll(PDO::FETCH_ASSOC);
+
+                     $obj        = $site->getCategoria($app->connection);
+                     $categorias = $obj->fetchAll(PDO::FETCH_ASSOC);
+
+                     $app->renderizaPaginaInicial($app, $posts, $categorias);
+                    break;
         case "categoria": $site = $app->loadModel("Site");
 
                           $obj   = $site->getPostCategoria($app->connection, 1, (int)base64_decode($_GET['id']));

@@ -36,10 +36,11 @@ class Site {
     }
 
     public function getPost($pdo, $postid){
-        $where = " AND id_post = ? ";
+        $where = " WHERE id_post = ? ";
         $obj = $pdo->prepare($this->sql.$where);
         $obj->bindParam(1,$postid);
-        return ($obj->execute()) ? $obj->fetch(PDO::FETCH_OBJ) : false;
+        $obj->execute();
+        return $obj;
     }
 
     public function getPostCategoria($pdo, $ativo = null, $idcategoria){
