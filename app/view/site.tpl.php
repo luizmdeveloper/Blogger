@@ -26,14 +26,14 @@
 	<div class="container">
 		<div class="blog-header">
 			<h1 class="blog-title">Blog PHP</h1>
-			<p class="lead blog-description">Blog desenvolvimento em PHP / Devmedia</p>
+			<p class="lead blog-description">Blog desenvolvimento em PHP</p>
 		</div>
 	</div>
 	
 	 <?php include($tpl['pagina'].".tpl.php"); ?>
 	 
 	 <div class="blog-footer">
-		<p>Rodapé da pagina</p>
+		<p>Todos os Direitos Reservados a Luiz Mário</p>
 	 </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>

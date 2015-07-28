@@ -9,12 +9,13 @@
 class Site {
 
     public $sql = " SELECT id_post,
-                           id_categoria,
+                           idcategoria_post,
                            descricao_categoria,
                            titulo_post,
                            text_post,
                            bloqueado_post,
                            nome_usuario,
+                           nome_imagem,
                            data_post
                     FROM post
                     LEFT JOIN usuario   ON id_usuario = idusuario_post
@@ -27,7 +28,7 @@ class Site {
     }
 
     public function getPosts($pdo, $bloqueado = null){
-        $where = $bloqueado != null ? " WHERE bloqueado_post = ".$bloqueado : " ";
+        $where = $bloqueado != null ? " AND bloqueado_post = ".$bloqueado : " ";
 
         $obj = $pdo->prepare($this->sql.$where);
         $obj->execute();
@@ -43,16 +44,18 @@ class Site {
 
     public function getPostCategoria($pdo, $ativo = null, $idcategoria){
 
-        $where = " WHERE ";
+        $where = " AND ";
         if ( $ativo != null) {
             $where = $where." bloqueado_post = 1 ";
             $where .= " AND ";
         }
-        $where .= " idcategoria_post = :categoria ";
+
+        $where = $where." idcategoria_post = ? ";
 
         $obj = $pdo->prepare($this->sql.$where);
-        $obj->bindParam(":categoria",$idcategoria);
-        
+        $obj->bindParam("1",$idcategoria);
+        $obj->execute();
+
         return $obj;
     }
 

@@ -9,6 +9,7 @@
   <div class="blog-post">
 	<h2 class="blog-post-title"><?=$post["titulo_post"]?></h2>
 	<p class="blog-post-meta"><?=$date->format('d/m/Y H:i:s')?> por <?=$post["nome_usuario"]?>. Categoria: <strong><?=$post["descricao_categoria"]?></strong></p>
+      <img src="./upload/<?=$post["nome_imagem"]?>">
 	<p><?=$post["text_post"]?></p>
   </div><!-- /.blog-post -->
 	
@@ -28,7 +29,7 @@
 	<h4>Categorias</h4>
 	<ol class="list-unstyled">
 	  <?php foreach($tpl["inicial"]["categorias"] as $categoria) { ?>
-		<li><a href="index.php?m=categoria&id=<?=$categoria["id_categoria"]?>"><?=$categoria["descricao_categoria"]?></a></li>
+		<li><a href="index.php?m=categoria&id=<?=base64_encode($categoria["id_categoria"])?>"><?=$categoria["descricao_categoria"]?></a></li>
 	  <?php } ?>
 	</ol>
   </div>
