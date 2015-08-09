@@ -14,6 +14,40 @@
     $app = new Application();
 
     switch($modulo){
+        case "admin" :// verifica se está logado
+                        session_start();
+
+                        if(isset($_SESSION["usuario"])){
+                            renderizaAdminInicial($app);
+                        } else {
+                            renderizaLogin($app);
+                        }
+
+                        break;
+        case "doLogin": $admin   = $app->loadModel("Admin");
+                        $usuario = tString($_POST["usuario"]);
+                        $senha   = md5(tString($_POST["senha"]));
+
+                        $obj = $admin->getUsuarioLoginSenha($app->connection, $usuario, $senha);
+
+                        if($obj){
+                            // efetuou login
+                            session_start();
+                            $_SESSION["id_usuario"]    = $obj->id_usuario;
+                            $_SESSION["login_usuario"] = $obj->login_usuario;
+                            $_SESSION["nome_usuario"]  = $obj->nome_usuario;
+                            renderizaAdminInicial($app);
+                        } else {
+                            // login falhou
+                            echo "<script>alert('Login ou senha incorreto(s)');</script>";
+                            renderizaLogin($app);
+                        }
+
+                        break;
+        case "logout" : session_start();
+                        session_destroy();
+                        renderizaLogin($app);
+                        break;
         case "fale-conosco" : $site     = $app->loadModel("Site");
                               $mensagem = "";
                               $classe   = "";
@@ -96,5 +130,38 @@
 
                   $app->renderizaPaginaInicial($app, $posts, $categorias);
                   break;
+    }
+
+    function renderizaAdminInicial($app){
+        $site = $app->loadModel("Site");
+
+        // vamos carregar os posts
+        $obj = $site->getPosts($app->connection);
+        $posts = $obj->fetchAll(PDO::FETCH_ASSOC);
+
+        $param = array( "titulo"=>$app->nome_cms,
+                        "pagina" => "inicialadmin",
+                        "dados" => array(
+                            "posts" => $posts
+                        )
+        );
+
+        $app->loadView("Admin",$param);
+    }
+
+    function renderizaLogin($app){
+        $param = array("titulo"=>$app->nome_cms);
+        $app->loadView("Login",$param);
+    }
+
+    function renderizaPaginaInicial($app, $categorias, $posts){
+        $param = array("titulo"=>$app->nome_cms,
+                        "pagina" => "inicial",
+                        "inicial" => array(
+                            "posts" => $posts,
+                            "categorias" => $categorias
+                        ));
+
+        $app->loadView("Site",$param);
     }
 
