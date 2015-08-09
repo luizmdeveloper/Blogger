@@ -17,13 +17,13 @@
 
 
         function __construct(){
-            $param = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8');
-            try{
-                $this->connection = new PDO('mysql:dbname='.$this->name.';host='.$this->host, $this->user, $this->pass, $param);
-            }catch (PDOException $e){
-                echo $e->getMessage();
-            }
+        $param = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8');
+        try{
+            $this->connection = new PDO('mysql:dbname='.$this->name.';host='.$this->host, $this->user, $this->pass, $param);
+        }catch (PDOException $e){
+            echo $e->getMessage();
         }
+    }
 
         function loadModel($model){
             include("app/model/".strtolower($model).".class.php");
@@ -37,7 +37,7 @@
         function renderizaPaginaInicial ($pdo, $posts, $categorias){
             $param = array("titulo"     => $this->nome_cms,
                            "pagina"     => "inicial",
-                           "inicial"    => array ("posts"=> $posts,
+                           "inicial"    => array ("posts"      => $posts,
                                                   "categorias" => $categorias));
 
             $this->loadView("Site", $param);

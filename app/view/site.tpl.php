@@ -18,7 +18,7 @@
       <div class="container">
         <nav class="blog-nav">
           <a class="blog-nav-item active" href="index.php">Inicial</a>
-          <a class="blog-nav-item" href="#">Fale Conosco</a>
+          <a class="blog-nav-item" href="index.php?m=fale-conosco">Fale Conosco</a>
         </nav>
       </div>
     </div> 

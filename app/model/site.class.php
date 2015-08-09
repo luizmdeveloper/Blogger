@@ -45,17 +45,21 @@ class Site {
 
     public function getPostCategoria($pdo, $ativo = null, $idcategoria){
 
-        $where = " AND ";
+        $clausuraWere = " WHERE ";
+        $where        = " ";
+
         if ( $ativo != null) {
-            $where = $where." bloqueado_post = 1 ";
+            $clausuraWere = $clausuraWere." bloqueado_post = 1 ";
             $where .= " AND ";
         }
 
-        $where = $where." idcategoria_post = ? ";
+        $clausuraWere .= $where." idcategoria_post = ? ";
 
-        $obj = $pdo->prepare($this->sql.$where);
+
+        $obj = $pdo->prepare($this->sql.$clausuraWere);
         $obj->bindParam("1",$idcategoria);
         $obj->execute();
+
 
         return $obj;
     }
