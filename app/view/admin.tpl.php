@@ -34,7 +34,7 @@
 	 <?php include($tpl['pagina'].".tpl.php"); ?>
 	 
 	 <div class="blog-footer">
-		<p>RTodos os Direitos Reservados a Luiz Mário</p>
+		<p>Todos os Direitos Reservados a Luiz Mário</p>
 	 </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>

@@ -14,16 +14,26 @@
     $app = new Application();
 
     switch($modulo){
-        case "admin" :// verifica se está logado
-                        session_start();
+        case "admin" : session_start();
 
-                        if(isset($_SESSION["usuario"])){
-                            renderizaAdminInicial($app);
-                        } else {
-                            renderizaLogin($app);
+                    if(isset($_SESSION["login_usuario"])){
+
+                        $comp   = (isset($_GET['c'])) ? tString($_GET['c']) : null;
+                        $action = (isset($_GET['a'])) ? tString($_GET['a']) : null;
+
+                        switch ($comp) {
+                            case "usuarios" : include("app/controller/usuario.class.php");
+                                              $usuario = new Usuario();
+                                              $action != null ? $usuario->$action($app) : $usuario->listarUsuarios($app);
+                                              break;
+                            default : renderizaAdminInicial($app);
+                                      break;
                         }
+                    } else {
+                        renderizaLogin($app);
+                    }
 
-                        break;
+                    break;
         case "doLogin": $admin   = $app->loadModel("Admin");
                         $usuario = tString($_POST["usuario"]);
                         $senha   = md5(tString($_POST["senha"]));
